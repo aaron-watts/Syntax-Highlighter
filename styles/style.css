@@ -1,0 +1,15 @@
+.sh-string {
+    color: purple;
+}
+
+.sh-fn {
+    color: red;
+}
+
+.sh-hard {
+    color: blue;
+}
+
+.sh-soft {
+    color: grey;
+}
