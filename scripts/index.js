@@ -13,12 +13,11 @@ const generalSyntaxRules = {
             /\/\*\*[\s\S]*?\*\//g,
         ]
     },
-    punctuation: {
-        type: 'punctuation',
-        regex: [
-            /[[\](){}<>]+/g,
-            /[\b\s]([$&|~*:;]+)[\b\s]/g,
-        ]
+    punctuationSoft: {
+        regex: /[[\](){}:]+|(&semi;)/g
+    },
+    punctuationHard: {
+        regex: /[\+\*!|?]|(&gt;|&lt;)/g
     },
     number: {
         type: 'number',
@@ -31,16 +30,6 @@ const generalSyntaxRules = {
     functions: {
         regex: /\b([\w]+)\s*\(/gm
     },
-    methods: {
-        regex: /\.([\w]+)\s*\(/gm
-    },
-    fn: {
-        type: 'function',
-        regex: [
-            /\b([\w]+)\s*\(/gm,
-            /\.([\w]+)\s*\(/gm,
-        ]
-    },
     keyTermsHard: {
         regex: /\b(if|then|else|for|while|do|class|function|return|in|of|new|this|try|catch|const|let|var)\b/gi
     },
@@ -49,66 +38,40 @@ const generalSyntaxRules = {
     }
 }
 
-
-const myfunc = () => {
-    //example
-}
-
-function yo() {
-    if (x == !true)
-        return true;
-}
-
-const array = [];
-
 highlightJS.forEach(sample => {
-    let string = sample.innerHTML;
-    const parse = document.createElement('pre');
-    parse.innerHTML = sample.innerHTML;
-    // string = string.replaceAll(
-    //     //regex
-    //     /('(?:[^'\\]|\\.)*')/g,
-    //     '<span style="color:green;">HHH</span>'
-    // );
+    const parseString = sample.innerText;
+    parseString.innerHTML = sample.innerHTML;
 
-    // const quotes = string.match(/('(?:[^'\\]|\\.)*')/g);
-    // console.log(quotes);
-    // for (let match of string.match(/('(?:[^'\\]|\\.)*')/g)) {
-    //     console.log(match)
-    // }
+    sample.innerHTML = parseString.replaceAll(/&|=|(?<!&\w*);/g,
+        `<span class="sh-hard">$&</span>`);
 
-    parse.innerText.match(generalSyntaxRules.keyTermsHard.regex)
+    parseString.match(generalSyntaxRules.keyTermsHard.regex)
         .forEach(match => {
-            parse.innerHTML = parse.innerHTML.replace(match,
+            sample.innerHTML = sample.innerHTML.replaceAll(new RegExp(`\\b(${match})\\b`, 'g'),
                 `<span class="sh-hard">$&</span>`);
         });
 
-    parse.innerText.match(generalSyntaxRules.strings.regex)
+    parseString.match(generalSyntaxRules.strings.regex)
         .forEach(match => {
-            parse.innerHTML = parse.innerHTML.replace(match,
+            sample.innerHTML = sample.innerHTML.replaceAll(match,
                 `<span class="sh-string">$&</span>`);
         });
 
-    parse.innerText.match(generalSyntaxRules.keyTermsHard.regex)
+    parseString.match(generalSyntaxRules.keyTermsHard.regex)
         .forEach(match => {
-            parse.innerHTML = parse.innerHTML.replace(match,
+            sample.innerHTML = sample.innerHTML.replace(match,
                 `<span class="sh-hard">$&</span>`);
         });
 
-    parse.innerText.match(generalSyntaxRules.functions.regex)
+    parseString.match(generalSyntaxRules.functions.regex)
         .forEach(match => {
-            console.log(match)
-            parse.innerHTML = parse.innerHTML.replace(match,
-                `<span class="sh-fn">${match.slice(0,-1)}</span>(`);
+            sample.innerHTML = sample.innerHTML.replace(match,
+                `<span class="sh-fn">${match.slice(0, -1)}</span>(`);
         });
 
-    
+    sample.innerHTML = sample.innerHTML.replaceAll(generalSyntaxRules.punctuationHard.regex,
+        `<span class="sh-hard">$&</span>`);
 
-    // parse.innerHTML = parse.innerHTML.replaceAll(/\b([\w]+)\s*\(/gm,
-    //     `<span class="sh-fn">$1</span>(`);
-
-    // string = string.replaceAll(/\.([\w]+)\s*\(/gm,
-    //     `.<span class="sh-fn">$2</span>(`);
-
-    sample.innerHTML = parse.innerHTML;
-})
+    sample.innerHTML = sample.innerHTML.replaceAll(generalSyntaxRules.punctuationSoft.regex,
+        `<span class="sh-soft">$&</span>`);
+});

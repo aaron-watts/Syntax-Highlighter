@@ -16,6 +16,8 @@
         consequatur perspiciatis. Laborum delectus eos iusto quasi quod ipsam veniam assumenda ex suscipit.
     </p>
     <pre class="syntax-highlighted js">
+let myVar = yourVar && !myVar || null ? 0 : myVar;
+
 const myfunc = (x) =&gt; {
     console.log('Hello World!');
     console.log(&quot;I am trying to build a syntax highlighter&quot;);
@@ -26,6 +28,45 @@ const myfunc = (x) =&gt; {
 function hello(x) {
     if (x != true) x = 2;
     return x*x;
+}
+
+function returnDateString(now=new Date()) {
+    return now.toDateString();
+}
+
+let myVar = yourVar && !myVar || null ? 0 : 'hmmm';
+
+const myfunc = (x) =&gt; {
+    console.log('Hello World');
+    console.log(&quot;I am trying to build: a syntax highlighter!&quot;);
+    console.log(`Template ${"literal"}`);
+}
+
+function hello(x) {
+    if (x != true) x = 2;
+    return x*x;
+}
+
+function returnDateString(now=new Date()) {
+    return now.toDateString();
+}
+
+let myVar = yourVar && !myVar || null ? 0 : myVar;
+
+const myfunc = (x) =&gt; {
+    console.log('Hello World!');
+    console.log(&quot;I am trying to build a syntax highlighter&quot;);
+    console.log("OK");
+    console.log(`Template ${"literal"}`);
+}
+
+function hello(x) {
+    if (x != true) x = 2;
+    return x*x;
+}
+
+function returnDateString(now=new Date()) {
+    return now.toDateString();
 }
     </pre>
 

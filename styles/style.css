@@ -1,15 +1,26 @@
+pre.syntax-highlighted {
+    color: black;
+}
+
 .sh-string {
-    color: purple;
-}
-
-.sh-fn {
-    color: red;
-}
-
-.sh-hard {
     color: blue;
 }
 
+.sh-string > * {
+    color: blue !important;
+    font-weight: normal !important;
+}
+
+.sh-fn {
+    color: maroon;
+}
+
+.sh-hard {
+    color: darkred;
+    font-weight: bold;
+}
+
 .sh-soft {
-    color: grey;
+    color: slategray;
+    font-weight: bold;
 }
