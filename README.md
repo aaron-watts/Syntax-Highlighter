@@ -14,6 +14,8 @@ ____
 - CSS
 
 ----
+Take a look at the [example page](https://aaron-watts.github.io/Syntax-Highlighter/)
+
 ## How to Use
 
 Copy _index.js_ and _styles.css_ into your project, either in a dedicated __Syntax_Highlighter__ folder, or rename them and put them in the desired directories. Link the style sheet in the header, and the script at the bottom of the body.
