@@ -37,3 +37,7 @@ pre.syntax-highlighted .sh-comment > * {
     color: grey !important;
     font-weight: normal !important;
 }
+
+pre.syntax-highlighted .sh-int {
+    color: purple;
+}

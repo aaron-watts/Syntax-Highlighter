@@ -19,13 +19,16 @@ const generalSyntaxRules = {
     classNames: {
         regex: /\s[A-Z]\w*/g
     },
+    number: {
+        regex: /[\b\W](-?\d+)\b/g
+    },
     punctuationSoft: {
         regex: /[[\](){}:]+|(?<!&\w*);/g
     },
     punctuationHard: {
         regex: /[\+\*!|?]|(&gt;|&lt;|&amp;)|\B=\B|=(?!")/g
     },
-    number: {
+    numberXXX: {
         type: 'number',
         regex: [
             /[\b\W](-?((?:\d+\.\d+|\.\d+|\d+\.)(?:e[+-]?\d+)?)|\d+(?:e[+-]?\d+))/gi,
@@ -78,6 +81,9 @@ highlightJS.forEach(sample => {
             sample.innerHTML = sample.innerHTML.replaceAll(match,
                 `<span class="sh-fn">${match.slice(0, -1)}</span>(`);
         });
+
+    sample.innerHTML = sample.innerHTML.replaceAll(generalSyntaxRules.number.regex,
+        `<span class="sh-int">$&</span>`);
 
     sample.innerHTML = sample.innerHTML.replaceAll(generalSyntaxRules.punctuationHard.regex,
         `<span class="sh-hard">$&</span>`);
