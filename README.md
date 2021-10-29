@@ -1,6 +1,6 @@
 # Syntax-Highlighter
 
-> A siple syntax highlighter for html `<pre>` elements written in javascript.
+> A simple syntax highlighter for html `<pre>` elements written in javascript.
 
 ____
 
@@ -38,7 +38,7 @@ The current stylings are free to be changed as you wish, although the ordering o
 
 ##### JavaScript:
 
-- You only need to escape ___greater than___ `>` (change to `&gt;`) and ___less than characters___ `<` (change to `&lt;`), the Parser can take care of the rest. The parser will also recognise `&quot;` and `&equals;` if you so choose to use them, but these escapes are not strictly necessary.
+- You only need to escape ___greater than___ `>` (change to `&gt;`) and ___less than___ characters `<` (change to `&lt;`), the Parser can take care of the rest. The parser will also recognise `&quot;` and `&equals;` if you so choose to use them, but these escapes are not strictly necessary.
 
 - __Do not__ use double quotes where a string immediately follows a declaration! This is to allow the parser to distinguish between declarations in your code and the attributes on the span elements that create the styling.
 
