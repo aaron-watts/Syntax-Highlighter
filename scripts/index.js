@@ -5,13 +5,16 @@ const generalSyntaxRules = {
         type: 'string',
         regex: /"(?:[^"\\]|\\.)*"|('(?:[^'\\]|\\.)*')|`(?:[^`\\]|\\.)*`/g,
     },
-    comments: {
+    commentsXX: {
         type: 'comment',
         regex: [
             /(?:^|[^\\])(\/\/.*)$/gm,
             /\/\*[\s\S]*?\*\//g,
             /\/\*\*[\s\S]*?\*\//g,
         ]
+    },
+    comments: {
+        regex: /(?:^|[^\\])(\/\/.*)$|\/\*[\s\S]*?\*\//gm
     },
     classNames: {
         regex: /\s[A-Z]\w*/g
@@ -44,6 +47,12 @@ const generalSyntaxRules = {
 highlightJS.forEach(sample => {
     const parseString = sample.innerText;
     parseString.innerHTML = sample.innerHTML;
+
+    new Set(parseString.match(generalSyntaxRules.comments.regex))
+        .forEach(match => {
+            sample.innerHTML = sample.innerHTML.replaceAll(match,
+                `<span class="sh-comment">$&</span>`);
+        });
 
     new Set(parseString.match(generalSyntaxRules.strings.regex))
         .forEach(match => {

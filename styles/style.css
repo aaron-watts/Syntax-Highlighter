@@ -28,3 +28,12 @@ pre.syntax-highlighted .sh-soft {
 pre.syntax-highlighted .sh-class {
     font-weight: bold;
 }
+
+pre.syntax-highlighted .sh-comment {
+    color: grey;
+}
+
+pre.syntax-highlighted .sh-comment > * {
+    color: grey !important;
+    font-weight: normal !important;
+}
