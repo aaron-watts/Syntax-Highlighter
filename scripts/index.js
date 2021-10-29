@@ -8,7 +8,7 @@ const javascriptSyntax = {
         'comments': /(?:^|[^\\])(\/\/.*)$|\/\*[\s\S]*?\*\//gm,
         'classNames': /\s[A-Z]\w*/g,
         'number': /[\b\W](-?\d+)\b/g,
-        'punctuationSoft': /[[\](){}:]+|(?<!&\w*);/g,
+        'punctuationSoft': /[[\](){}:.]+|(?<!&\w*);/g,
         'punctuationHard': /[\+\*!|?]|(&gt;|&lt;|&amp;)|\B=\B|=(?!")/g,
         'strings': /"(?:[^"\\]|\\.)*"|('(?:[^'\\]|\\.)*')|`(?:[^`\\]|\\.)*`/g
     },

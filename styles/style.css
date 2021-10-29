@@ -20,24 +20,25 @@ pre.syntax-highlighted .sh-class {
     font-weight: bold;
 }
 
-pre.syntax-highlighted .sh-comment {
-    color: grey;
-}
-
-pre.syntax-highlighted .sh-comment > * {
-    color: grey !important;
-    font-weight: normal !important;
+pre.syntax-highlighted .sh-int,
+pre.syntax-highlighted .sh-int > *  {
+    color: purple;
 }
 
 pre.syntax-highlighted .sh-string {
     color: blue;
 }
 
-pre.syntax-highlighted .sh-string > * {
+pre.syntax-highlighted .sh-string * {
     color: blue !important;
     font-weight: normal !important;
 }
 
-pre.syntax-highlighted .sh-int {
-    color: purple;
+pre.syntax-highlighted .sh-comment {
+    color: grey;
+}
+
+pre.syntax-highlighted .sh-comment * {
+    color: grey !important;
+    font-weight: normal !important;
 }
