@@ -13,11 +13,14 @@ const generalSyntaxRules = {
             /\/\*\*[\s\S]*?\*\//g,
         ]
     },
+    classNames: {
+        regex: /\s[A-Z]\w*/g
+    },
     punctuationSoft: {
-        regex: /[[\](){}:]+|(&semi;)/g
+        regex: /[[\](){}:]+|(?<!&\w*);/g
     },
     punctuationHard: {
-        regex: /[\+\*!|?]|(&gt;|&lt;)/g
+        regex: /[\+\*!|?]|(&gt;|&lt;|&amp;)|\B=\B|=(?!")/g
     },
     number: {
         type: 'number',
@@ -42,30 +45,28 @@ highlightJS.forEach(sample => {
     const parseString = sample.innerText;
     parseString.innerHTML = sample.innerHTML;
 
-    sample.innerHTML = parseString.replaceAll(/&|=|(?<!&\w*);/g,
-        `<span class="sh-hard">$&</span>`);
-
-    parseString.match(generalSyntaxRules.keyTermsHard.regex)
-        .forEach(match => {
-            sample.innerHTML = sample.innerHTML.replaceAll(new RegExp(`\\b(${match})\\b`, 'g'),
-                `<span class="sh-hard">$&</span>`);
-        });
-
-    parseString.match(generalSyntaxRules.strings.regex)
+    new Set(parseString.match(generalSyntaxRules.strings.regex))
         .forEach(match => {
             sample.innerHTML = sample.innerHTML.replaceAll(match,
                 `<span class="sh-string">$&</span>`);
         });
 
-    parseString.match(generalSyntaxRules.keyTermsHard.regex)
+    new Set(parseString.match(generalSyntaxRules.keyTermsHard.regex))
         .forEach(match => {
-            sample.innerHTML = sample.innerHTML.replace(match,
+            sample.innerHTML = sample.innerHTML.replaceAll(new RegExp(`\\b(${match})\\b`, 'g'),
                 `<span class="sh-hard">$&</span>`);
         });
 
-    parseString.match(generalSyntaxRules.functions.regex)
+    new Set(parseString.match(generalSyntaxRules.classNames.regex))
         .forEach(match => {
-            sample.innerHTML = sample.innerHTML.replace(match,
+            console.log(match)
+            sample.innerHTML = sample.innerHTML.replaceAll(match,
+                `<span class="sh-class">$&</span>`);
+        })
+
+    new Set(parseString.match(generalSyntaxRules.functions.regex))
+        .forEach(match => {
+            sample.innerHTML = sample.innerHTML.replaceAll(match,
                 `<span class="sh-fn">${match.slice(0, -1)}</span>(`);
         });
 

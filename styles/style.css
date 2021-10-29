@@ -2,25 +2,29 @@ pre.syntax-highlighted {
     color: black;
 }
 
-.sh-string {
+pre.syntax-highlighted .sh-string {
     color: blue;
 }
 
-.sh-string > * {
+pre.syntax-highlighted .sh-string > * {
     color: blue !important;
     font-weight: normal !important;
 }
 
-.sh-fn {
+pre.syntax-highlighted .sh-fn {
     color: maroon;
 }
 
-.sh-hard {
+pre.syntax-highlighted .sh-hard {
     color: darkred;
     font-weight: bold;
 }
 
-.sh-soft {
+pre.syntax-highlighted .sh-soft {
     color: slategray;
+    font-weight: bold;
+}
+
+pre.syntax-highlighted .sh-class {
     font-weight: bold;
 }
