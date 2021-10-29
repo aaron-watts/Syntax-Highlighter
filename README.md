@@ -50,3 +50,5 @@ function goodFn (default = "default") {};
 function alsoGood (default='default') {};
 ```
 - Template literal strings inner values are currently only rendered as a string - it will not break out to general highlighting rules when working within the string templates. _This feature will hopefully be added in the future._
+
+- __Do not__ use comment syntax within strings.
