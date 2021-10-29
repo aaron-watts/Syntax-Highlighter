@@ -2,15 +2,6 @@ pre.syntax-highlighted {
     color: black;
 }
 
-pre.syntax-highlighted .sh-string {
-    color: blue;
-}
-
-pre.syntax-highlighted .sh-string > * {
-    color: blue !important;
-    font-weight: normal !important;
-}
-
 pre.syntax-highlighted .sh-fn {
     color: maroon;
 }
@@ -35,6 +26,15 @@ pre.syntax-highlighted .sh-comment {
 
 pre.syntax-highlighted .sh-comment > * {
     color: grey !important;
+    font-weight: normal !important;
+}
+
+pre.syntax-highlighted .sh-string {
+    color: blue;
+}
+
+pre.syntax-highlighted .sh-string > * {
+    color: blue !important;
     font-weight: normal !important;
 }
 
