@@ -1,4 +1,5 @@
 const highlightJS = document.querySelectorAll('pre.syntax-highlighted.js');
+const highlightHTML = document.querySelectorAll('pre.syntax-highlighted.html');
 
 const javascriptSyntax = {
     expressions: {
@@ -74,3 +75,11 @@ const javascriptSyntax = {
 highlightJS.forEach(sample => {
     sample.innerHTML = javascriptSyntax.parse(sample);
 });
+
+highlightHTML.forEach(sample => {
+    sample.innerHTML = sample.innerHTML.replaceAll(/(?<=\s)\w+\="(?:[^"\\]|\\.)*"/g,
+        `<span class="sh-class">$&</span>`);
+
+    sample.innerHTML = sample.innerHTML.replaceAll(/(?<=&lt;\/*)\w+/g,
+        `<span class="sh-hard">$&</span>`);
+})
